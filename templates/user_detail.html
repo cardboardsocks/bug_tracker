@@ -1,0 +1,117 @@
+@sirAMPR
+sirAMPR Add edit ticket functionality
+Latest commit fc8b875 5 days ago
+ History
+ 1 contributor
+117 lines (111 sloc)  4.82 KB
+  
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>{{ user_id }}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">🐛</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Bug Tracker<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/addticket/">Create Ticket</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup/">Create User</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+      <a href="/user/{{ request.user.id }}" class="nav-item mr-sm-2">{{ request.user.username }}</a>
+      <a class="btn btn-danger" href="/logout/" class="nav-item my-2 my-sm-0">logout</a>
+    </nav>
+    <h2>User: {{ user_id }}</h2>
+    <div class="card" style="width: 75%; margin: 0 auto; margin-top: 10px">
+      <div class="card-body">
+        <h5 class="card-title">Assigned Tickets</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                <tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets_assigned %}
+                <tr>
+                    <th scope="row">{{ ticket.id }}</th>
+                    <td><a href="/ticket/{{ticket.id}}"> {{ ticket.title }}</a></th>
+                    <td>{{ ticket.date }}</th>
+                    <td>{{ ticket.description }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="width: 75%; margin: 0 auto; margin-top: 10px">
+      <div class="card-body">
+        <h5 class="card-title">Filed Tickets</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                <tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets_filed %}
+                <tr>
+                    <th scope="row">{{ ticket.id }}</th>
+                    <td><a href="/ticket/{{ticket.id}}"> {{ ticket.title }}</a></th>
+                    <td>{{ ticket.date }}</th>
+                    <td>{{ ticket.description }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="width: 75%; margin: 0 auto; margin-top: 10px">
+      <div class="card-body">
+        <h5 class="card-title">Tickets Completed</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                <tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets_completed %}
+                <tr>
+                    <th scope="row">{{ ticket.id }}</th>
+                    <td><a href="/ticket/{{ticket.id}}"> {{ ticket.title }}</a></th>
+                    <td>{{ ticket.date }}</th>
+                    <td>{{ ticket.description }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>

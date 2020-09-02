@@ -1,0 +1,15 @@
+<div class="container">
+    {% if not my_ticket %}
+        <h1>Invalid Ticket-Does not exist</h1>
+    {% else %}
+        <h2>Status: {{ my_ticket.ticket_status }}</h2>
+        <h3>Title: {{ my_ticket.title }}</h3>
+        <h4>Time Filed: {{ my_ticket.time_date }}</h4>
+        <h4>User who Filed: <a href="/user/{{user.id}}/">{{ my_ticket.ticket_author }}</a></h4>
+        <h4>Description: {{ my_ticket.description }}</h4>
+        <h4>User Assigned: {{ my_ticket.user_assigned_to_ticket }}</h4>
+    {% endif %}
+<h4><a href="/ticket/{{my_ticket.id}}/edit/">Edit Ticket</a></h4>
+<a href='done/<int:ticket_id>/'><button type="button">Done</button></a>
+
+</div>
